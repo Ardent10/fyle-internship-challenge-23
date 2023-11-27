@@ -25,7 +25,8 @@ import { ApiService } from 'src/app/services/api.service';
 export class UserProfileComponent implements OnInit {
   loading = true;
   username!: string;
-  userData: any; // For storing the user data from the
+  userData: any; // For storing the user data from the getUserData() API
+  repoData: any; // For storing the repo data from the getAllRepos() API
 
   constructor(
     private route: ActivatedRoute,
@@ -36,7 +37,7 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.username = params['username'];
-      // Now you can use this.username in your component logic
+
       this.apiService.getUserData(this.username!).subscribe(
         (data) => {
           this.userData = {
@@ -52,7 +53,28 @@ export class UserProfileComponent implements OnInit {
             twitter: data.twitter_username,
             github: data.html_url,
           };
-          this.loading = false;
+
+          // Get repo data
+          this.apiService.getAllRepos(this.username, 1).subscribe(
+            (repoData) => {
+              // Assuming repoData is an array
+              this.repoData = repoData.map((repo: any) => {
+                return {
+                  name: repo.name,
+                  description: repo.description,
+                  deployedLink: repo.homepage || '', // Assuming the homepage is the deployed link
+                  repoLink: repo.html_url,
+                  techStack: repo.language,
+                };
+              });
+              this.loading = false;
+              console.error(this.repoData);
+            },
+            (repoError) => {
+              console.error(repoError);
+              this.loading = false;
+            }
+          );
         },
         (error) => {
           console.error(error);

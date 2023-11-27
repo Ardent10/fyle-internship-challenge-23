@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Input,Component } from '@angular/core';
 
 @Component({
   selector: 'app-repository-list',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./repository-list.component.scss']
 })
 export class RepositoryListComponent {
-
+  @Input() repoData: any[]=[];
 }

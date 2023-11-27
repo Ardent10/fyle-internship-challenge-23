@@ -1,38 +1,39 @@
 <!-- repository-list.component.html -->
-  <div class="w-full flex justify-center items-center mt-4 px-16 overscroll-auto">
+<div class="w-full flex justify-center items-center mt-4 px-16 overscroll-auto">
+  <div
+    class="grid grid-cols-2 gap-px w-8/12 columns-2 bg-gray-800 rounded-lg overflow-auto p-4 min-h-full h-[62vh]"
+  >
+    <!-- repository details -->
     <div
-      class="grid grid-cols-2 gap-px w-8/12 columns-2 bg-gray-800 rounded-lg overflow-auto p-4 min-h-full h-[62vh]"
+      *ngFor="let repo of repoData"
+      class="border-2 border-[#9233d4] rounded-lg p-2 m-2"
     >
-      <!-- repository details -->
-      <div class="border-2 border-[#9233d4] rounded-lg p-2 m-2">
-        <div class="flex">
-          <!-- repo name -->
-          <div class="font-medium text-lg text-white">Static Repo Name</div>
-          <div class="flex-grow"></div>
-          <!-- deployment link -->
-          <a [href]="'https://example.com'" target="_blank">
-            <img src="/assets/web.svg" alt="Deployment Link" />
-          </a>
-          <!-- repository link -->
-          <a [href]="'https://example.com'" target="_blank">
-            <img src="/assets/link.svg" alt="Repository Link" />
-          </a>
-        </div>
-        <!-- repo description -->
-        <div class="mt-2 text-white">Static Repo Description</div>
-        <!-- repo topics -->
-        <div class="flex flex-wrap mt-4">
-          <div
-            class="mx-1 my-0.5 font-normal text-xs border-2 px-2 py-0.5 border-[#9233d4] text-[#9233d4] rounded-md"
-          >
-            Static Topic
-          </div>
+      <div class="flex">
+        <!-- repo name -->
+        <div class="font-medium text-lg text-white">{{ repo.name }}</div>
+        <div class="flex-grow"></div>
+        <!-- deployment link -->
+        <a [href]="repo.deployedLink" target="_blank">
+          <img src="/assets/web.svg" alt="Deployment Link" />
+        </a>
+        <!-- repository link -->
+        <a [href]="repo.repoLink" target="_blank">
+          <img src="/assets/link.svg" alt="Repository Link" />
+        </a>
+      </div>
+      <!-- repo description -->
+      <div class="mt-2 text-white">{{ repo.description }}</div>
+      <!-- repo topics -->
+      <div class="flex flex-wrap mt-4">
+        <div
+          class="mx-1 my-0.5 font-normal text-xs border-2 px-2 py-0.5 border-[#9233d4] text-[#9233d4] rounded-md"
+        >
+          {{ repo?.techStack }}
         </div>
       </div>
     </div>
-   
   </div>
-
+</div>
 
 <!-- paginator -->
 <div class="flex justify-center">
