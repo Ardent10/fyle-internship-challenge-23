@@ -1,19 +1,49 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(
-    private httpClient: HttpClient
-  ) { }
-
-  getUser(githubUsername: string) {
-    return this.httpClient.get(`https://api.github.com/users/${githubUsername}`);
+  // Method to get user data
+  getUserData(githubUsername: string): Observable<any> {
+    return this.httpClient
+      .get(`https://api.github.com/users/${githubUsername}`)
+      .pipe(
+        catchError((error) => {
+          if (error.status === 404) {
+            // User not found, you can handle this as needed (e.g., redirect)
+            console.error('User not found');
+          } else {
+            console.error(error);
+          }
+          // Propagate the error further
+          return throwError(() => error);
+        })
+      );
   }
 
-  // implement getRepos method by referring to the documentation. Add proper types for the return type and params 
+  // Method to get all repositories
+  getAllRepos(githubUsername: string, pageNumber: number): Observable<any> {
+    return this.httpClient
+      .get(
+        `https://api.github.com/users/${githubUsername}/repos?per_page=10&page=${pageNumber}`
+      )
+      .pipe(
+        catchError((error) => {
+          if (error.status === 404) {
+            // User not found, you can handle this as needed (e.g., redirect)
+            console.error('User not found');
+          } else {
+            console.error(error);
+          }
+          // Propagate the error further
+          return throwError(() => error);
+        })
+      );
+  }
 }

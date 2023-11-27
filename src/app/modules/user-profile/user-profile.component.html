@@ -1,0 +1,119 @@
+<ng-container *ngIf="loading; else content">
+  <app-skeleton-loader></app-skeleton-loader>
+</ng-container>
+
+<ng-template #content>
+  <div *ngIf="userData; else userNotFound">
+    <div @fadeInOut>
+      <div class="w-screen">
+        <div class="flex justify-between items-center px-80">
+          <div class="flex">
+            <!-- back arrow -->
+            <div class="flex items-start">
+              <button
+                type="button"
+                class="text-white bg-[#9233d4] hover:scale-110 transform-gpu font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition-transform"
+              >
+                <a class="cursor-pointer">
+                  <img src="/assets/back.svg" alt="" />
+                </a>
+              </button>
+            </div>
+            <!-- profile image -->
+            <img
+              class="h-40 rounded-full border-4 border-[#9233d4]"
+              [src]="userData.avatar"
+              alt="Profile Picture"
+            />
+            <div class="flex flex-col justify-center px-5">
+              <!-- name and social media -->
+              <div class="flex">
+                <div class="mr-2">
+                  <p class="text-2xl font-medium text-white">
+                    {{ userData?.name }}
+                  </p>
+                </div>
+                <div class="border-r-2 border-[#9233d4]"></div>
+                <div class="flex ml-3">
+                  <a [href]="userData?.github" target="_blank">
+                    <img
+                      class="h-7"
+                      src="/assets/github.svg"
+                      alt="Github Logo"
+                    />
+                  </a>
+                  <a [href]="userData?.twitter" target="_blank">
+                    <img
+                      class="h-7 ml-2"
+                      src="/assets/twitter.svg"
+                      alt="Twitter Logo"
+                    />
+                  </a>
+                </div>
+              </div>
+              <!-- username -->
+              <div>
+                <a
+                  class="text-[#9233d4]"
+                  [href]="userData?.github"
+                  target="_blank"
+                >
+                  @{{ userData?.username }}
+                </a>
+              </div>
+              <!-- user-bio -->
+              <div class="mt-1 text-white w-3/4">{{ userData?.bio }}</div>
+              <div class="flex mt-1">
+                <img
+                  class="h-6"
+                  src="/assets/followers.svg"
+                  alt="Follower count"
+                />
+                <div class="ml-2 text-white">{{ userData?.followers }}</div>
+                <img
+                  class="h-6 ml-3"
+                  src="/assets/following.svg"
+                  alt="Following count"
+                />
+                <div class="ml-2 text-white">{{ userData?.following }}</div>
+                <img
+                  class="h-6 ml-3"
+                  src="/assets/repo.svg"
+                  alt="repos"
+                />
+                <div class="ml-2 text-white">{{ userData?.repos }}</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <!-- user location & hireable status -->
+            <div class="ml-3 mr-3 flex flex-col justify-center items-center">
+              <div class="flex items-center">
+                <img src="/assets/location.svg" alt="Location" />
+                <div class="text-white ml-2">{{ userData?.location }}</div>
+              </div>
+              <button
+                class="bg-[#9233d4] text-white text-s font-semibold px-3 py-1 rounded mt-3"
+              >
+                <a [href]="userData?.blog" target="_blank">Blog</a>
+              </button>
+            </div>
+          </div>
+        </div>
+        <app-repository-list></app-repository-list>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #userNotFound>
+  <div class="text-center mt-5">
+    <p class="text-red-500 text-lg">No such user exists.</p>
+    <button
+      class="mt-3 bg-[#9233d4] text-white text-s font-semibold px-4 py-2 rounded"
+      (click)="goToHome()"
+    >
+      Go back to Home
+    </button>
+  </div>
+</ng-template>

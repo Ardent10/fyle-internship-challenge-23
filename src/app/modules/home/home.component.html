@@ -1,0 +1,38 @@
+<div class="flex flex-col items-center justify-center">
+  <img src="./assets/logo.png" alt="logo" class="w-30 h-24" />
+
+  <div class="text-center">
+    <h2 class="text-2xl text-white font-bold">Welcome to GitSphere</h2>
+    <p class="text-white text-center mt-2">
+      Explore GitHub users and their repositories.
+    </p>
+  </div>
+
+  <div class="flex mt-4">
+    <form
+      class="flex justify-center items-center"
+      [formGroup]="searchForm"
+      (ngSubmit)="checkValidForm()"
+      (submit)="onSubmit()"
+    >
+      <input
+        formControlName="username"
+        class="outline-none w-80 rounded-l-lg p-4 border-t border-b border-l text-gray-800 border-gray-200 bg-white"
+        placeholder="GitHub username"
+      />
+      <button
+        class="px-8 rounded-r-lg bg-purple-600 text-white font-bold p-4 border-purple-600 border-t border-b border-r disabled:opacity-50 disabled:cursor-not-allowed"
+        type="submit"
+        [disabled]="searchForm.invalid"
+      >
+        <img src="/assets/arrow-right.svg" alt="Search Button" />
+      </button>
+    </form>
+  </div>
+  <div
+    class="text-center"
+    *ngIf="!checkValidForm() && (searchForm.dirty || searchForm.touched)"
+  >
+    <p class="text-red-500 text-center mt-2">Enter a valid GitHub username!</p>
+  </div>
+</div>

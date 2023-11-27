@@ -1,0 +1,28 @@
+.skeleton {
+  opacity: 0.9;
+  background: linear-gradient(90deg, hsl(200, 20%, 70%), hsl(200, 20%, 95%));
+  background-size: 200% 100%;
+  animation: skeleton-loading 4s linear infinite;
+}
+
+.skeleton-text {
+  width: 100%;
+  height: 0.5rem;
+  margin-bottom: 0.25rem;
+  border-radius: 0.125rem;
+}
+
+.skeleton-text:last-child {
+  margin-bottom: 0;
+  width: 80%;
+}
+
+@keyframes skeleton-loading {
+    0% {
+      background-position: 200% 0;
+    }
+
+    100% {
+      background-position: -200% 0;
+    }
+  }

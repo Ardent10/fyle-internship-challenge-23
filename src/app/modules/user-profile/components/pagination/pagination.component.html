@@ -1,0 +1,62 @@
+<!-- Pagination Wrapper -->
+<div class="flex items-center justify-center space-x-4 mt-4">
+  <!-- Pagination -->
+  <nav class="flex items-center space-x-2">
+    <!-- Previous Button -->
+    <button
+      type="button"
+      class="px-3 py-2 border rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300 focus:outline-none focus:bg-gray-300"
+    >
+      Previous
+    </button>
+
+    <!-- Page Numbers (Replace with your logic) -->
+    <div class="flex space-x-2">
+      <button
+        type="button"
+        class="px-3 py-2 border rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300 focus:outline-none focus:bg-gray-300"
+      >
+        1
+      </button>
+      <button
+        type="button"
+        class="px-3 py-2 border rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300 focus:outline-none focus:bg-gray-300"
+      >
+        2
+      </button>
+      <!-- Add more page numbers as needed -->
+    </div>
+
+    <!-- Next Button -->
+    <button
+      type="button"
+      class="px-3 py-2 border rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300 focus:outline-none focus:bg-gray-300"
+    >
+      Next
+    </button>
+  </nav>
+
+  <!-- Dropdown for Rows Per Page -->
+  <div class="relative">
+    <select
+      class="block appearance-none w-24 px-3 py-2 border rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300 focus:outline-none focus:bg-gray-300"
+    >
+      <option value="10">10 Rows</option>
+      <option value="20">20 Rows</option>
+      <option value="50">50 Rows</option>
+      <option value="100">100 Rows</option>
+    </select>
+    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+      <svg
+        class="w-4 h-4 fill-current"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+      >
+        <path
+          d="M5.555 8.89l3.889 3.888 3.888-3.888 1.11 1.11L10 14.889l-5.555-5.555 1.11-1.11z"
+        ></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<!-- End Pagination Wrapper -->
