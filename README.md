@@ -1,43 +1,65 @@
-# Fyle Frontend Challenge
+# GitSphere | Fyle Internship Challenge 23
 
-## Who is this for?
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This challenge is meant for candidates who wish to intern at Fyle and work with our engineering team. The candidate should be able to commit to at least 6 months of dedicated time for internship.
+GitSphere is a web application that allows users to explore GitHub users and their repositories.
 
-## Why work at Fyle?
+## Features
 
-Fyle is a fast-growing Expense Management SaaS product. We are ~40 strong engineering team at the moment. 
+- Search for GitHub users by username.
+- View detailed information about a user, including their bio, repositories, and more.
 
-We are an extremely transparent organization. Check out our [careers page](https://careers.fylehq.com) that will give you a glimpse of what it is like to work at Fyle. Also, check out our Glassdoor reviews [here](https://www.glassdoor.co.in/Reviews/Fyle-Reviews-E1723235.htm). You can read stories from our teammates [here](https://stories.fylehq.com).
+## Technologies Used
 
-## Challenge outline
-
-This challenge involves implementing application using github api. 
-
-The services that you need to use are already implemented - check out ApiService.
-
-You can see details of this challenge [here](https://fyleuniverse.notion.site/fyleuniverse/Fyle-Frontend-development-challenge-cb5085e5e0864e769e7b98c694400aaa)
-
-__Note__ - This challenge is in angular. We work on angular frameworks & after you join we expect the same from you. Hence it is required to complete this assignement in angular itself.
-
-## What happens next?
-
-You will hear back within 48 hours from us via email.
+- Angular
+- TypeScript
+- GitHub API
 
 ## Installation
 
-1. Fork this repository to your github account.
-2. Clone the forked repository and proceed with steps mentioned below.
+1. Clone the repository:
 
-### Install requirements
-* Install angular cli [Ref](https://angular.io/cli)
-* `npm install` in this repository 
+   ```bash
+   git clone https://github.com/Ardent10/fyle-internship-challenge-23.git
+   ```
 
-## Development server
+2. Navigate to the project directory:
 
-Run `ng serve` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+   ```bash
+   cd fyle-internship-challenge-23
+   ```
 
-## Further help
+3. Install dependencies:
 
-Visit the [Angular Documentation](https://angular.io/guide/styleguide) to learn more.
-Styling is to be strictly done with [Tailwind](https://tailwindcss.com/docs/installation).
+   ```bash
+   npm install
+   ```
+
+4. Run the application:
+
+   ```bash
+   npm start
+   ```
+
+5. Open your browser and visit [http://localhost:4200/](http://localhost:4200/) to use GitSphere.
+
+## Usage
+
+1. Enter a GitHub username in the search bar.
+2. Click the search button to view details about the user.
+3. Explore the user's repositories.
+
+## Contributing
+
+If you'd like to contribute to GitSphere, follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature: `git checkout -b feature-name`.
+3. Commit your changes: `git commit -m 'Add new feature'`.
+4. Push to the branch: `git push origin feature-name`.
+5. Submit a pull request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```
