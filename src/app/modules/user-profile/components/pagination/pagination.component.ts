@@ -7,31 +7,25 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./pagination.component.scss'],
 })
 export class PaginationComponent {
+  @Input() pageCount: number = 0;
   @Input() currentPage: number = 1;
-  @Input() itemsPerPage: number = 10;
-  @Input() totalItems: number = 0;
   @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
-  Math: any;
 
-  get lastPage(): number {
-    return Math.ceil(this.totalItems / this.itemsPerPage);
-  }
-
-  changePage(page: number): void {
-    if (page >= 1 && page <= this.lastPage) {
-      this.pageChange.emit(page);
+  goToPage(pageNo: number): void {
+    if (
+      pageNo >= 1 &&
+      pageNo <= this.pageCount &&
+      pageNo !== this.currentPage
+    ) {
+      this.pageChange.emit(pageNo);
     }
   }
 
   getPages(): number[] {
     const pages: number[] = [];
-    const startPage = Math.max(1, this.currentPage - 2);
-    const endPage = Math.min(this.lastPage, startPage + 4);
-
-    for (let i = startPage; i <= endPage; i++) {
+    for (let i = 1; i <= this.pageCount; i++) {
       pages.push(i);
     }
-
     return pages;
   }
 }

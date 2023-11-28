@@ -24,7 +24,7 @@
       <!-- repo description -->
       <div class="mt-2 text-white">{{ repo.description }}</div>
       <!-- repo topics -->
-      <div class="flex flex-wrap mt-4">
+      <div class="flex flex-wrap mt-4" *ngIf="repo?.techStack">
         <div
           class="mx-1 my-0.5 font-normal text-xs border-2 px-2 py-0.5 border-[#9233d4] text-[#9233d4] rounded-md"
         >
@@ -36,6 +36,10 @@
 </div>
 
 <!-- paginator -->
-<div class="flex justify-center">
-  <app-pagination></app-pagination>
+<div class="flex justify-center mt-2">
+  <app-pagination
+    [pageCount]="pageCount"
+    [currentPage]="currentPage"
+    (pageChange)="handlePageChange($event)"
+  ></app-pagination>
 </div>

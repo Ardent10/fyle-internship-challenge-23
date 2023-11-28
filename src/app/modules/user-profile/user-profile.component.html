@@ -10,14 +10,14 @@
           <div class="flex">
             <!-- back arrow -->
             <div class="flex items-start">
-              <button
-                type="button"
-                class="text-white bg-[#9233d4] hover:scale-110 transform-gpu font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition-transform"
-              >
-                <a class="cursor-pointer">
+              <a href="/" class="cursor-pointer">
+                <button
+                  type="button"
+                  class="text-white bg-[#9233d4] hover:scale-110 transform-gpu font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition-transform"
+                >
                   <img src="/assets/back.svg" alt="" />
-                </a>
-              </button>
+                </button>
+              </a>
             </div>
             <!-- profile image -->
             <img
@@ -76,11 +76,7 @@
                   alt="Following count"
                 />
                 <div class="ml-2 text-white">{{ userData?.following }}</div>
-                <img
-                  class="h-6 ml-3"
-                  src="/assets/repo.svg"
-                  alt="repos"
-                />
+                <img class="h-6 ml-3" src="/assets/repo.svg" alt="repos" />
                 <div class="ml-2 text-white">{{ userData?.repos }}</div>
               </div>
             </div>
@@ -100,7 +96,15 @@
             </div>
           </div>
         </div>
-        <app-repository-list [repoData]="repoData"></app-repository-list>
+
+
+        <app-repository-list
+          [repoData]="repoData"
+          [currentPage]="currentPage"
+          [totalRepoCount]="totalRepoCount"
+          [itemsPerPage]="itemsPerPage"
+          (pageChange)="handlePageChange($event)"
+        ></app-repository-list>
       </div>
     </div>
   </div>

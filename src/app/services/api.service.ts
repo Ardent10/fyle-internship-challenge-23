@@ -28,10 +28,10 @@ export class ApiService {
   }
 
   // Method to get all repositories
-  getAllRepos(githubUsername: string, pageNumber: number): Observable<any> {
+  getAllRepos(githubUsername: string, pageNumber: number, itemsPerPage:number): Observable<any> {
     return this.httpClient
       .get(
-        `https://api.github.com/users/${githubUsername}/repos?per_page=10&page=${pageNumber}`
+        `https://api.github.com/users/${githubUsername}/repos?per_page=${itemsPerPage}&page=${pageNumber}`
       )
       .pipe(
         catchError((error) => {

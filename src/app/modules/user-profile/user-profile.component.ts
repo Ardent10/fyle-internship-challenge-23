@@ -23,10 +23,17 @@ import { ApiService } from 'src/app/services/api.service';
   ],
 })
 export class UserProfileComponent implements OnInit {
+  [x: string]: any;
   loading = true;
   username!: string;
   userData: any; // For storing the user data from the getUserData() API
   repoData: any; // For storing the repo data from the getAllRepos() API
+
+  // To handle Pagination
+  currentPage: number = 1;
+  itemsPerPage: number = 10;
+  totalRepoCount: number = 0;
+  totalPages: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -53,28 +60,8 @@ export class UserProfileComponent implements OnInit {
             twitter: data.twitter_username,
             github: data.html_url,
           };
-
-          // Get repo data
-          this.apiService.getAllRepos(this.username, 1).subscribe(
-            (repoData) => {
-              // Assuming repoData is an array
-              this.repoData = repoData.map((repo: any) => {
-                return {
-                  name: repo.name,
-                  description: repo.description,
-                  deployedLink: repo.homepage || '', // Assuming the homepage is the deployed link
-                  repoLink: repo.html_url,
-                  techStack: repo.language,
-                };
-              });
-              this.loading = false;
-              console.error(this.repoData);
-            },
-            (repoError) => {
-              console.error(repoError);
-              this.loading = false;
-            }
-          );
+          this.totalRepoCount = data.public_repos;
+          this.fetchRepoData();
         },
         (error) => {
           console.error(error);
@@ -82,6 +69,37 @@ export class UserProfileComponent implements OnInit {
         }
       );
     });
+  }
+
+  fetchRepoData(): void {
+    console.log(this.currentPage, this.itemsPerPage, this.totalRepoCount);
+    console.log(Math.ceil(this.totalRepoCount / this.itemsPerPage));
+    this.apiService
+      .getAllRepos(this.username, this.currentPage, this.itemsPerPage)
+      .subscribe(
+        (repoData) => {
+          this.repoData = repoData.map((repo: any) => {
+            return {
+              name: repo.name,
+              description: repo.description,
+              deployedLink: repo.homepage || '',
+              repoLink: repo.html_url,
+              techStack: repo.language,
+            };
+          });
+          this.loading = false;
+        },
+        (repoError) => {
+          console.error(repoError);
+          this.loading = false;
+        }
+      );
+  }
+
+  // Method to handle page change
+  handlePageChange(page: number): void {
+    this.currentPage = page;
+    this.fetchRepoData();
   }
 
   goToHome() {
