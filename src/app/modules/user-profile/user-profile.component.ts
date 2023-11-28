@@ -33,7 +33,6 @@ export class UserProfileComponent implements OnInit {
   currentPage: number = 1;
   itemsPerPage: number = 10;
   totalRepoCount: number = 0;
-  totalPages: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -72,8 +71,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   fetchRepoData(): void {
-    console.log(this.currentPage, this.itemsPerPage, this.totalRepoCount);
-    console.log(Math.ceil(this.totalRepoCount / this.itemsPerPage));
     this.apiService
       .getAllRepos(this.username, this.currentPage, this.itemsPerPage)
       .subscribe(

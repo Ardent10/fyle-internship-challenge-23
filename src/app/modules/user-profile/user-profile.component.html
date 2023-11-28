@@ -95,16 +95,27 @@
               </button>
             </div>
           </div>
+          <div class="h-10 text-[#fff]">
+            current page :{{ currentPage }} total repo:
+          {{ totalRepoCount }} items: {{ itemsPerPage }}
+          </div>
         </div>
 
-
-        <app-repository-list
-          [repoData]="repoData"
-          [currentPage]="currentPage"
-          [totalRepoCount]="totalRepoCount"
-          [itemsPerPage]="itemsPerPage"
-          (pageChange)="handlePageChange($event)"
-        ></app-repository-list>
+        <div *ngIf="repoData && userData">
+          <app-repository-list
+            *ngIf="
+              repoData &&
+              totalRepoCount !== undefined &&
+              currentPage !== undefined &&
+              itemsPerPage !== undefined
+            "
+            [repoData]="repoData"
+            [currentPage]="currentPage"
+            [totalRepoCount]="totalRepoCount"
+            [itemsPerPage]="itemsPerPage"
+            (pageChange)="handlePageChange($event)"
+          ></app-repository-list>
+        </div>
       </div>
     </div>
   </div>

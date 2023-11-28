@@ -7,10 +7,11 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./pagination.component.scss'],
 })
 export class PaginationComponent {
-  @Input() pageCount: number = 0;
+  @Input() pageCount!: number ;
   @Input() currentPage: number = 1;
   @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
 
+ 
   goToPage(pageNo: number): void {
     if (
       pageNo >= 1 &&
