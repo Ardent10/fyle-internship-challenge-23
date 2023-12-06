@@ -49,6 +49,22 @@ GitSphere is a web application that allows users to explore GitHub users and the
 2. Click the search button to view details about the user.
 3. Explore the user's repositories.
 
+## Testing
+
+GitSphere uses Angular's testing utilities for unit testing. To run the tests, use the following command:
+
+```bash
+ng test
+```
+
+This command will execute all unit tests for the application. If you want to focus on specific tests, you can provide a file or pattern after the ng test command. For example:
+
+```
+ng test --include='**/home.component.spec.ts' --include='**/api.service.spec.ts'
+```
+
+NOTE: The modules/HomeComponent and the services/apiService components are the that satisfy the Fyle Internship Challenge 23 requirements.
+
 ## Contributing
 
 If you'd like to contribute to GitSphere, follow these steps:
@@ -62,4 +78,7 @@ If you'd like to contribute to GitSphere, follow these steps:
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+```
+
 ```

@@ -20,7 +20,7 @@
         <a
           *ngFor="let page of getPages()"
           [ngClass]="{
-            'bg-[#9233d4]': page === currentPage,
+            'bg-white text-[#9233d4]': page === currentPage,
             'other-class': page !== currentPage
           }"
           class="cursor-pointer relative inline-flex items-center px-4 py-2 border text-sm font-medium border-gray-300 text-gray-500 hover:bg-gray-50"
